@@ -1,0 +1,97 @@
+%%Hard-iron offset: -56.50, 10.24, -1.380
+%%Gyroscope zero offset: -0.1296, 0.1720, -0.02773
+
+A = dlmread('20-lateral', ',');
+B = zeros(size(A,1),14);
+B(1,:) = A(1,:);
+
+counter = 2;
+for i = 2:size(A,1)
+    if A(i,1) ~= A(i-1,1)
+        B(counter,:) = A(i,:);
+        counter = counter + 1;
+    end
+end
+
+sized = size(B,1);
+
+B = B(1:(counter - 1),:);
+
+B(:,2) = B(:,2) + 0.122;
+B(:,3) = B(:,3) - 9.81;
+
+B(:,4) = B(:,4) + 0.1296;
+B(:,5) = B(:,5) - 0.1720;
+B(:,6) = B(:,6) + 0.02773;
+
+B(:,7) = B(:,7) + 56.50;
+B(:,8) = B(:,8) - 10.24;
+B(:,9) = B(:,9) + 1.380;
+
+C = B;
+
+Accelerometer = C(:,1:3);
+Gyroscope = C(:,4:6);
+Magnetometer = C(:,7:9);
+FRS = C(:,10:11);
+HES = C(:,12);
+time = C(:,13);
+button = C(:,14);
+
+%%
+v_ix = 0; %initial velocity for given coordinate axis
+v_iy = 0;
+v_iz = 0;
+x_i = 0; %initial position for given coordinate axis
+y_i = 0; 
+z_i = 0; 
+
+calibrate_ax = C(1,1);
+calibrate_ay = C(1,2);
+calibrate_az = C(1,3);
+
+C(1,1) = x_i; C(1,2) = y_i; C(1,3) = z_i;
+x_pos = [0];
+y_pos = [0];
+z_pos = [0];
+
+for index1 = 1:size(C,1)
+        if (index1 == 1)
+            dt = C(index1,13);
+        else
+            dt = C(index1,13) - C(index1 - 1,13);
+        end
+
+        a_x = C(index1, 1) - calibrate_ax;
+        v_fx = v_ix + a_x*dt; %kinematic formula for updated velocity
+        x_f = x_i + v_fx*dt + 0.5*a_x*(dt^2); %kinematic formula for updated position
+        C(index1,1)= x_f;
+        v_ix = v_fx;
+        x_i = x_f;
+        
+        a_y = C(index1, 2) - calibrate_ay;
+        a_y = a_y;
+        v_fy = v_iy + a_y*dt; %kinematic formula for updated velocity
+        y_f = y_i + v_fy*dt + 0.5*a_y*(dt^2); %kinematic formula for updated position
+        C(index1,2)= y_f;
+        v_iy = v_fy;
+        y_i = y_f;
+        
+        a_z = C(index1, 3) - calibrate_az;
+        v_fz = v_iz + a_z*dt; %kinematic formula for updated velocity
+        z_f = z_i + v_fz*dt + 0.5*a_z*(dt^2); %kinematic formula for updated position
+        C(index1,3)= z_f;
+        v_iz = v_fz;
+        z_i = z_f;
+        
+        x_pos = [x_pos x_f];
+        y_pos = [y_pos, y_f];
+        z_pos = [z_pos, z_f];
+end
+
+plot3(x_pos, y_pos, z_pos)
+xlabel('x-axis')
+ylabel('y-axis')
+zlabel('z-axis')
+
+save 20-lateral.mat Accelerometer Gyroscope Magnetometer FSR HES time button
