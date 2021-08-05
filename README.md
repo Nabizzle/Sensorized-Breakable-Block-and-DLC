@@ -348,7 +348,7 @@ That’s it! You’re in. From here skip to whichever action you want to run.
 #### Analyzing a Video
 **Always do the previous steps before these**
 
-This takes about 50 seconds per video
+This takes about 50 seconds for a 30 second video and increases dramatically for longer videos. Multiple videos analyze consecutively.
 
 When you have videos from a test, take them from the camera SIM card to a new folder within **DLC**>**BreakbleBlockTests**.
 
@@ -365,13 +365,13 @@ If you want to check the network strength, proceed to Part 3!
 #### Assessing Network Confidence
 **This must be done after the second part above.**
 
-This takes about 50 seconds per video.
+This takes about 10 seconds. Multiple videos will run consecutively.
 
 DLC will automatically plot the motion in your video for you and tell you how confident the network is in its analysis. There are instructions in Part 5 for calibrating the data directly from the .csv file into real world time and location data, but these plots could also be useful.
 
 The confidence ratings are extremely useful for deciding whether or not to retrain the network. Ideally you want confidence ratings above 85% for the whole video. I’ll explain below how to create and read the confidence plots.
 
-First, enter: `dlc.plot_trajectories(”config\\path”,[”videofile\\path”], shuffle=1)`
+First, enter: `dlc.plot_trajectories(”config\\path”,[“Path\\video\\1”,”Path\\video\\2”,…], shuffle=1)`
 
 _The file path here is the same as the file path in Part 2!_
 
@@ -382,7 +382,7 @@ If your confidence ratings are low, you will need to do some retraining.
 #### Creating a Labeled Video
 **This must be done after the second part above.**
 
-This takes about 50 seconds per video.
+This takes about 1.5x the video length. Multiple videos will run concurrently.
 
 The most satisfying way to review the work of your neural network is to create a labeled video so that you can judge the accuracy of your network for yourself. This function is also good for presenting your work!
 
