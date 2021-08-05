@@ -358,6 +358,8 @@ _If you retrain the network using videos with identical names, the old video wil
 
 Now enter `dlc.analyze_videos(”config\\path”,[“Path\\video\\1”,”Path\\video\\2”,…],shuffle=1,save_as_csv=True)`
 
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/AnalyzeVideo.png" width=700>
+
 This should take ~50 seconds, and it create a .csv and a .h5 file in your folder. This .csv is all you really need here, so if you’re just generating plots, skip ahead to Part 5!
 
 If you want to check the network strength, proceed to Part 3!
@@ -408,7 +410,13 @@ The most satisfying way to review the work of your neural network is to create a
 
 Simply enter: `dlc.create_labeled_video(“config\\path”,[“Path\\video\\1”,”Path\\video\\2”,…])`
 
+
 You can enter as many videos as you want, and as long as you include the full path and have already analyzed each video, you shouldn’t run into any trouble.
+
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/LabeledVideoWError.png" width=700>
+
+**If you get the error messages seen above, don't worry too much. It does not seem to impede analysis at all.**
 
 When complete, there will be a new video file in the folder with your original video. It will have the same name with the addition of "3DLC_resnet50_BreakableBlockMonthDayshuffle1_200000_labeled".
 
