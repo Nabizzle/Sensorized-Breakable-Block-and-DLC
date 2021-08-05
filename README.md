@@ -386,12 +386,15 @@ Inside the folder will be another folder with your video name, and inside that w
 These graphics include images of x and y position over time, although this is not calibrated to real world time and space. There is also a likelihood plot.
 
 Perfectly tracked videos will produce liklihood plots like this:
+
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/plot-likelihood.png" width=500>
 
 Trackings that can be improved will look like this:
+
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/LikelihoodDipExample.png" width=500>
 
 Videos where the tracked points are covered will look like this:
+
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/CoveredDotExample.png" width=500>
 
 If you get plots that look like the middle example, you should consider extracting outliers and refining the network.
@@ -406,14 +409,15 @@ The most satisfying way to review the work of your neural network is to create a
 Simply enter: `dlc.create_labeled_video(“config\\path”,[“Path\\video\\1”,”Path\\video\\2”,…])`
 
 You can enter as many videos as you want, and as long as you include the full path and have already analyzed each video, you shouldn’t run into any trouble.
-Each video will take ~50 seconds.
 
-When complete, there will be a new video file in the folder with your original video called “alkbjsladk”.
+When complete, there will be a new video file in the folder with your original video. It will have the same name with the addition of "3DLC_resnet50_BreakableBlockMonthDayshuffle1_200000_labeled".
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/FilesAfterLabeling.png" width=500>
 
 Go ahead and watch it! If your marker is jumping around, you need to do some retraining.
 
 #### Improving the Network
-This takes about 8 hours or more.
+This takes 8 hours or more.
 
 If your results for Part 3 or 4 were unsatisfactory, you will need to extract the bad frames and retrain the network. Heads up, this is very time consuming! Expect to spend a couple of hours extracting and refining, and then retraining will take at least 6 hours. Try to time it so you can let the computer retrain overnight!
 
@@ -448,6 +452,7 @@ I recommend extracting outliers from 2-4 videos before continuing to the next st
 2. Refining your Labels
 
 `dlc.refine_labels(”config\\path”)`
+
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/RefineFrames0.png" width=500>
 
 A graphic user interface (GUI) will pop up. 
