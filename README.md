@@ -369,15 +369,32 @@ This takes about 10 seconds. Multiple videos will run consecutively.
 
 DLC will automatically plot the motion in your video for you and tell you how confident the network is in its analysis. There are instructions in Part 5 for calibrating the data directly from the .csv file into real world time and location data, but these plots could also be useful.
 
-The confidence ratings are extremely useful for deciding whether or not to retrain the network. Ideally you want confidence ratings above 85% for the whole video. I’ll explain below how to create and read the confidence plots.
+The confidence ratings are extremely useful for deciding whether or not to retrain the network. Ideally you want confidence ratings above 85% for the whole video.
 
 First, enter: `dlc.plot_trajectories(”config\\path”,[“Path\\video\\1”,”Path\\video\\2”,…], shuffle=1)`
 
 _The file path here is the same as the file path in Part 2!_
 
-This will only take a few seconds. Now open the folder with your video: there will be another folder in there called **“plot poses”**. Open that and…. (do this with pictures)
+This will only take a few seconds. Now open the folder with your video: there will be another folder in there called **“plot poses”**.
 
-If your confidence ratings are low, you will need to do some retraining.
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/AllFilesAfterAnalysis.png" width=700>
+
+Inside the folder will be another folder with your video name, and inside that will be 4 graphics.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/PlotPosesFiles.png" width=700>
+
+These graphics include images of x and y position over time, although this is not calibrated to real world time and space. There is also a likelihood plot.
+
+Perfectly tracked videos will produce liklihood plots like this:
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/plot-likelihood.png" width=500>
+
+Trackings that can be improved will look like this:
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/LikelihoodDipExample.png" width=500>
+
+Videos where the tracked points are covered will look like this:
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/CoveredDotExample.png" width=500>
+
+If you get plots that look like the middle example, you should consider extracting outliers and refining the network.
 
 #### Creating a Labeled Video
 **This must be done after the second part above.**
@@ -442,7 +459,7 @@ A graphic user interface (GUI) will pop up.
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Show%20Outlier%20Image.png" width=700>
 
- 3. Drag dots that are placed incorrectly to their correct positions. You can use the zoom, pan, home, and lock view buttons as before.
+ 3. Drag dots that are placed incorrectly to their correct positions with the mouse. You can use the zoom, pan, home, and lock view buttons to get a closer look at the placement if needed.
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/RefineFrames2.png" width=500>
 
