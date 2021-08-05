@@ -375,7 +375,7 @@ First, enter: `dlc.plot_trajectories(”config\\path”,[“Path\\video\\1”,�
 
 _The file path here is the same as the file path in Part 2!_
 
-This will take ~50 seconds. Now open the folder with your video: there will be another folder in there called **“plot poses”**. Open that and…. (do this with pictures)
+This will only take a few seconds. Now open the folder with your video: there will be another folder in there called **“plot poses”**. Open that and…. (do this with pictures)
 
 If your confidence ratings are low, you will need to do some retraining.
 
@@ -408,44 +408,43 @@ Once you have your examples, DLC will automatically identify frames in the examp
 
 1. Extract Outliers
 
-_Note: You are supposed to be able to extract multiple videos at once, but this is buggy. You need to do them one at a time._
-
 `dlc.extract_outlier_frames(”config\\path”,[”videofile\\path”])`
 
 This finds all the frames in the chosen video that the computer is not confident about. It will tell you how many there are, and ask if you want to go ahead and extract them. It looks like this:
 
-<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Extract%20Outliers.png">
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Extract%20Outliers.png" width=700>
 
 If it’s more than 300, you should consider manually labeling instead. If it’s not, tell it you want to continue by entering: `y`
-
-Now it will list all those frames like this:
-
-<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/List%20Outliers.png">
-
-This is kind of clunky, but highlight all of the frames it listed and copy them using `ctrl+shift+c` (don’t forget the shift or it’ll get confused and you’ll have to repeat this step).
-
-Now paste them into the terminal using `ctrl+shift+v` and click **enter**.
 
 _Time 1 min-.5 hour, depending on number of frames_
 
 It will look like nothing is happening, but just let it do it’s thing until you get your green prompt back. The files you have extracted are now in a folder in your videos folder.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/ExtractOutliers3.png" width=700>
+
+If you get the warning: "AUTOMATIC ADDING OF VIDEO TO CONFIG FILE FAILED!", you will need to copy the video location as a path and add it to your config.yaml file with the other video files. Match formatting and cropping instructions to other video files.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/AddToConfig.png" width=400>
 
 I recommend extracting outliers from 2-4 videos before continuing to the next step.
 
 2. Refining your Labels
 
 `dlc.refine_labels(”config\\path”)`
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/RefineFrames0.png" width=500>
 
 A graphic user interface (GUI) will pop up. 
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Create%20a%20Figure.png" width=500>
 
- 1. Find one of your new folders of extracted outliers and load it.
- 2.	Choose a likelihood threshold. I have been using 0.85. Markers the computer is less confident in than the value you provide will appear as hollow circles, while the rest will be solid.
+ 1. Open labeled-data>the video you extracted>machinelabels-iter#.h5
+ 2.	Choose a likelihood threshold. The example here is 0.40 but you may want to go as high as 0.85 for very strong networks. Markers the computer is less confident in than the value you provide will appear as hollow circles, while the rest will be solid.
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Show%20Outlier%20Image.png" width=700>
 
-**Don’t click “Save” until you’re done!** It will ask you if you want to do another video, and if you say “no” and try to keep working on the one you’re using, it has some kind of critical error.
+ 3. Drag dots that are placed incorrectly to their correct positions. You can use the zoom, pan, home, and lock view buttons as before.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/RefineFrames2.png" width=500>
 
 3. Merge Datasets
 
