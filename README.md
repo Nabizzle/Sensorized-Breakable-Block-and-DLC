@@ -35,6 +35,8 @@ A repository of code for the sensorized, magnetic, breakable block and Deep Lab 
       * [Assessing Network Confidence](#assessing-network-confidence)
       * [Creating a Labeled Video](#creating-a-labeled-video)
       * [Improving the Network](#improving-the-network)
+      * [Creating Calibrated Plots](#creating-calibrated-plots)
+      * [Transferring Your Network](#transferring-your-network)
     * [Featherboard](#featherboard)
       * [Analysis of Breakable Box MicroSD Card Data with Matlab](#analysis-of-breakable-box-microsd-card-data-with-matlab)
     * [EMG Analysis](#emg-analysis)
@@ -362,20 +364,20 @@ Now enter `dlc.analyze_videos(”config\\path”,[“Path\\video\\1”,”Path\\
 
 This should take ~50 seconds, and it create a .csv and a .h5 file in your folder. This .csv is all you really need here, so if you’re just generating plots, skip ahead to Part 5!
 
-If you want to check the network strength, proceed to Part 3!
+If you want to check the network strength, proceed to Creating Calibrated Plots!
 
 #### Assessing Network Confidence
-**This must be done after the second part above.**
+**The video must be analyzed first.**
 
 This takes about 10 seconds. Multiple videos will run consecutively.
 
-DLC will automatically plot the motion in your video for you and tell you how confident the network is in its analysis. There are instructions in Part 5 for calibrating the data directly from the .csv file into real world time and location data, but these plots could also be useful.
+DLC will automatically plot the motion in your video for you and tell you how confident the network is in its analysis. There are instructions for calibrating the data directly from the .csv file into real world time and location data, but these plots could also be useful.
 
 The confidence ratings are extremely useful for deciding whether or not to retrain the network. Ideally you want confidence ratings above 85% for the whole video.
 
 First, enter: `dlc.plot_trajectories(”config\\path”,[“Path\\video\\1”,”Path\\video\\2”,…], shuffle=1)`
 
-_The file path here is the same as the file path in Part 2!_
+_The file path here is the same as the file path in Analyzing a Video!_
 
 This will only take a few seconds. Now open the folder with your video: there will be another folder in there called **“plot poses”**.
 
@@ -402,7 +404,7 @@ Videos where the tracked points are covered will look like this:
 If you get plots that look like the middle example, you should consider extracting outliers and refining the network.
 
 #### Creating a Labeled Video
-**This must be done after the second part above.**
+**The video must be analyzed first.**
 
 This takes about 1.5x the video length. Multiple videos will run concurrently.
 
@@ -427,9 +429,9 @@ Go ahead and watch it! If your marker is jumping around, you need to do some ret
 #### Improving the Network
 This takes 8 hours or more.
 
-If your results for Part 3 or 4 were unsatisfactory, you will need to extract the bad frames and retrain the network. Heads up, this is very time consuming! Expect to spend a couple of hours extracting and refining, and then retraining will take at least 6 hours. Try to time it so you can let the computer retrain overnight!
+If your results for plots or labeling were unsatisfactory, you will need to extract the bad frames and retrain the network. Heads up, this is very time consuming! Expect to spend a couple of hours extracting and refining, and then retraining will take at least 6 hours. Try to time it so you can let the computer retrain overnight!
 
-Once you have decided to retrain, you will want to find good examples of all the mistakes your network makes. I recommend running Part 4 on different videos until you have at least two different examples of each mistake.
+Once you have decided to retrain, you will want to find good examples of all the mistakes your network makes. I recommend labeling videos until you have at least two examples of each mistake.
 
 For example, if your video is identifying something on a subject’s shirt instead of the block, try to catch it doing this in at least two different videos. More examples will strengthen the network, so you may want to use four or five examples- especially if the mistake only happens for a few frames in each example.
 
@@ -445,7 +447,7 @@ This finds all the frames in the chosen video that the computer is not confident
 
 If it’s more than 300, you should consider manually labeling instead. If it’s not, tell it you want to continue by entering: `y`
 
-_Time 1 min-.5 hour, depending on number of frames_
+_Time 1-30min depending on number of frames_
 
 It will look like nothing is happening, but just let it do it’s thing until you get your green prompt back. The files you have extracted are now in a folder in your videos folder.
 
@@ -493,9 +495,9 @@ This takes about 6 hours
 
 `dlc.train_network(”config\\path”,maxiters=200000)`
 
-`maxiters` is the maximum number of iterations the network training goes through. The system reports its progress every 1000 iterations, so you won’t see proof that it’s working for about ten minutes. 200000 is the recommended number for a strong network, and after 200000 improvement is negligible. Do not forget the maxiters command! Without it the network will never stop training and you will have to forcibly stop it when you next log on.
+`maxiters` is the maximum number of iterations the network training goes through. The system reports its progress every 1000 iterations, so you won’t see proof that it’s working for about five minutes. 200000 is the recommended number for a strong network, and after 200000 improvement is negligible. Do not forget the maxiters command! Without it the network will never stop training and you will have to forcibly stop it when you next log on.
 
-There is now a folder named iteration-0 in your training-datasets folder. Every time you train, the iteration number will increase, and a new folder will appear!
+There is now a folder named iteration-n in your training-datasets folder, where n=(the previous iteration)+1. Every time you train, the iteration number will increase, and a new folder will appear!
 
 6. Evaluate the Network
 
@@ -504,6 +506,12 @@ This takes about 30 minutes
 `dlc.evaluate_network(”config\\path”, plotting=True)`
 
 _This will give you a number that translates to the computer’s confidence in the strength of its new network. You can do some background reading to see how to interpret this, or you can go back to video analysis and see how it performs._
+
+#### Creating Calibrated Plots
+DLC automatically generated plots during the Assessing Network Confidence step. However, these plots are not calibrated to real-world time and distance data. In order to calibrate, open the Excel sheet titled "Breakable Block Calibration.xlsx"
+
+#### Transferring your Network
+
 
 ### Featherboard
 #### Analysis of Breakable Box MicroSD Card Data with Matlab
