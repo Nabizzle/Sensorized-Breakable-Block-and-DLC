@@ -152,7 +152,7 @@ Scroll down to the download instructions and install the option for the GPU conf
 Find and open **Anaconda Powershell Prompt (anaconda3)**
 * This was installed in the the first step, [Install Anaconda and Python](#install-anaconda-and-python).
 
-Find the folder containing `DLC-CPU.yaml`,  shift+right-click and select **Copy as path**
+Find the folder containing `DLC-GPU.yaml`,  shift+right-click and select **Copy as path**
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Copy%20to%20Path.png">
 
@@ -160,7 +160,7 @@ Now type `cd` and then the path into your prompt window
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Change%20Directory.png" width="1000">
 
-Now type `conda env create -f DLC-CPU.yaml`. _Note that in the below image, the CPU version is installed_
+Now type `conda env create -f DLC-GPU.yaml`.
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Install%20DLC%20in%20Anaconda.png" width="1000">
 
