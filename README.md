@@ -307,11 +307,11 @@ DeepLabCut is software designed for tracking moving subjects. I have already cre
 
 **Important note:** All paths require **two** backslashes wherever there would normally be one. Instead of writing a location like this:
 
-`C:\Users\susan\Documents\Spence_Lab\DLC_Analysis`
+`C:\Users\EBME\Desktop\DeepLabCut\BreakableBlock`
 
 you must put:
 
-`C:\\Users\\susan\\Documents\\Spence_Lab\\DLC_Analysis`
+`C:\\Users\\EBME\\Desktop\\DeepLabCut\\BreakableBlock`
 
 To assist in this, I have a handy little file called **Breakable Block Locations.txt**. There is an adjusted location for the config.yaml file there which you can copy+paste into your code as needed.
 
