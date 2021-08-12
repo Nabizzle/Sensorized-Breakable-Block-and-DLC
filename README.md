@@ -508,7 +508,17 @@ This takes about 30 minutes
 _This will give you a number that translates to the computer’s confidence in the strength of its new network. You can do some background reading to see how to interpret this, or you can go back to video analysis and see how it performs._
 
 #### Creating Calibrated Plots
-DLC automatically generated plots during the Assessing Network Confidence step. However, these plots are not calibrated to real-world time and distance data. In order to calibrate, open the Excel sheet titled "Breakable Block Calibration.xlsx"
+DLC automatically generated plots during the Assessing Network Confidence step. However, these plots are not calibrated to real-world time and distance data. In order to calibrate, open the Excel sheet titled "Breakable Block Calibration.xlsx" and the .CSV file generated during the Analyze Video step (It will be called "videoname_resnet50_BreakableBlockDateshuffle1_200000").
+
+Copy columns A through J of your .CSV file and paste them as columns A through J of "Breakable Block Calibration.xlsx". _(it says "paste here")_
+
+The first few rows of real world x and y locations will autopopulate. Highlight these and extend the formatting down until you have "irl" data for all datapoints.
+
+The tabs at the bottom labeled "X vs Time" and "Y vs Time" have graphs which will autopopulate as well.
+Save this new file in the video folder under a new name, such as "Vidname_XYPlot".
+
+Use these plots however you want! Nabeel said he would make a better version of this with Python or Matlab in the future, but for now Excel is easy.
+
 
 #### Transferring your Network
 
