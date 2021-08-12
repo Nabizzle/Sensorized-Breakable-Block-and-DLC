@@ -150,6 +150,8 @@ Scroll down to the download instructions and install the option for the GPU conf
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/DLC%20Installer.png">
 
+You may also be interested in their [github](https://github.com/DeepLabCut/DeepLabCut).
+
 #### Install DeepLabCut
 Find and open **Anaconda Powershell Prompt (anaconda3)**
 * This was installed in the the first step, [Install Anaconda and Python](#install-anaconda-and-python).
@@ -521,7 +523,9 @@ Use these plots however you want! Nabeel said he would make a better version of 
 
 
 #### Transferring your Network
+To transfer the network to a new computer, the simplest way is to compress the entire "Breakable Block" folder into a Zip file. The zip file will be about 7 GB, so you will need a fairly large harddrive to transfer it.
 
+Once you have unzipped the folder system onto the new computer, you will need to update the locations in the "config.yaml" file. Update the path and all video file paths. The rest of the locations will be found automatically assuming you have not changed the structure within the folder system at all.
 
 ### Featherboard
 #### Analysis of Breakable Box MicroSD Card Data with Matlab
