@@ -65,22 +65,39 @@ Follow the steps below to set up all parts of the test
 ## Prerequisites
 ### Materials for the Breakable Block
 Development Board (1): https://www.adafruit.com/product/4382
+
 9-DoF Inertial Measurement Unit (1): https://www.adafruit.com/product/4485
+
 Stemma QT Connector (1): https://www.adafruit.com/product/4399
+
 Hall Sensor (1): https://www.adafruit.com/product/158
+
 MicroSD Card (1): https://www.amazon.com/SanDisk-COMINU024966-16GB-microSD-Card/dp/B004KSMXVM/ref=asc_df_B004KSMXVM/?tag=hyprod-20&linkCode=df0&hvadid=309776868400&hvpos=&hvnetw=g&hvrand=15168076603432715634&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9015305&hvtargid=pla-568819849086&psc=1
+
 Force-Sensitive Resistors (2): https://www.adafruit.com/product/166
+
 Battery (1): https://www.adafruit.com/product/3898
+
 Female Headers (1 set): https://www.adafruit.com/product/2886
+
 Heatshrink Tubing (1 set): https://www.adafruit.com/product/1649
+
 2-Pin JST Cables (4): https://www.adafruit.com/product/261#tutorials
+
 2-Pin JST Connectors (4): https://www.adafruit.com/product/1769#tutorials
+
 3-Pin JST Cables (1): https://www.adafruit.com/product/4336#tutorials
+
 3-Pin JST Connectors (1): https://www.adafruit.com/product/4391#tutorials
+
 1 kOhm Resistor (3): https://www.adafruit.com/product/4294
+
 330 kOhm Resistor (2): https://www.mouser.com/ProductDetail/Vishay-Beyschlag/MBB02070C2209FCT00?qs=PwR17mNzlcNasAfQWVUeXQ%3D%3D&mgh=1&gclid=CjwKCAjwjdOIBhA_EiwAHz8xm3erHz4jhEKvgGDCFvZZRFm7vF4IB3KdpdJlSs9pUisXKtLMqwhEHRoC8cAQAvD_BwE
+
 Switch (1): https://www.sparkfun.com/products/9609
+
 LED (1): https://www.adafruit.com/product/297
+
 Heat Set Inserts (1 package): https://www.mcmaster.com/94459A110/
 
 ### Featherboard Setup
