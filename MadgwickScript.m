@@ -9,7 +9,7 @@
 % plots the output as Euler angles.
 %
 % Note that the Euler angle plot shows erratic behaviour in phi and psi
-% when theta approaches ±90 degrees. This due to a singularity in the Euler
+% when theta approaches Â±90 degrees. This due to a singularity in the Euler
 % angle sequence known as 'Gimbal lock'.  This issue does not exist for a
 % quaternion or rotation matrix representation.
 %
@@ -27,14 +27,14 @@ clc;                                % clear the command terminal
 
 %% Import and plot sensor data
 
-load 20-lateral.mat
+load 20-lateral.mat %replace 20-lateral with the name of the file to analyze 
 
 figure('Name', 'Sensor Data');
 axis(1) = subplot(3,1,1);
 hold on;
-plot(time, Gyroscope(:,1), 'r');
-plot(time, Gyroscope(:,2), 'g');
-plot(time, Gyroscope(:,3), 'b');
+plot(time, Gyroscope(:,1), 'r'); %generates time v. gyroscope graph for x-direction
+plot(time, Gyroscope(:,2), 'g'); %generates time v. gyroscope graph for y-direction
+plot(time, Gyroscope(:,3), 'b'); %generates time v. gyroscope graph for z-direction
 legend('X', 'Y', 'Z');
 xlabel('Time (s)');
 ylabel('Angular rate (deg/s)');
@@ -42,9 +42,9 @@ title('Gyroscope');
 hold off;
 axis(2) = subplot(3,1,2);
 hold on;
-plot(time, Accelerometer(:,1), 'r');
-plot(time, Accelerometer(:,2), 'g');
-plot(time, Accelerometer(:,3), 'b');
+plot(time, Accelerometer(:,1), 'r'); %generates time v. accelerometer graph for x-direction
+plot(time, Accelerometer(:,2), 'g'); %generates time v. accelerometer graph for y-direction
+plot(time, Accelerometer(:,3), 'b'); %generates time v. accelerometer graph for z-direction
 legend('X', 'Y', 'Z');
 xlabel('Time (s)');
 ylabel('Acceleration (g)');
@@ -52,9 +52,9 @@ title('Accelerometer');
 hold off;
 axis(3) = subplot(3,1,3);
 hold on;
-plot(time, Magnetometer(:,1), 'r');
-plot(time, Magnetometer(:,2), 'g');
-plot(time, Magnetometer(:,3), 'b');
+plot(time, Magnetometer(:,1), 'r'); %generates time v. magnetometer graph for x-direction
+plot(time, Magnetometer(:,2), 'g'); %generates time v. magnetometer graph for y-direction
+plot(time, Magnetometer(:,3), 'b'); %generates time v. magnetometer graph for z-direction
 legend('X', 'Y', 'Z');
 xlabel('Time (s)');
 ylabel('Flux (G)');
@@ -75,7 +75,7 @@ end
 
 %% Plot algorithm output as Euler angles
 % The first and third Euler angles in the sequence (phi and psi) become
-% unreliable when the middle angles of the sequence (theta) approaches ±90
+% unreliable when the middle angles of the sequence (theta) approaches Â±90
 % degrees. This problem commonly referred to as Gimbal Lock.
 % See: http://en.wikipedia.org/wiki/Gimbal_lock
 
@@ -83,9 +83,9 @@ euler = quatern2euler(quaternConj(quaternion)) * (180/pi);	% use conjugate for s
 
 figure('Name', 'Euler Angles');
 hold on;
-plot(time, euler(:,1), 'r');
-plot(time, euler(:,2), 'g');
-plot(time, euler(:,3), 'b');
+plot(time, euler(:,1), 'r'); %generates time v. euler angle graph for x-direction
+plot(time, euler(:,2), 'g'); %generates time v. euler angle graph for y-direction
+plot(time, euler(:,3), 'b'); %generates time v. euler angle graph for z-direction
 title('Euler angles');
 xlabel('Time (s)');
 ylabel('Angle (deg)');
