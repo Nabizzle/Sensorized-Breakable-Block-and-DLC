@@ -1,21 +1,20 @@
 %%Hard-iron offset: X = -56.50, Y = 10.24, Z = -1.380
 %%Gyroscope zero offset: X = -0.1296, Y = 0.1720, Z = -0.02773
 
-A = dlmread('20-lateral', ','); %replace 20-lateral with the name of the file to analyze; reads in text file data
+A = dlmread('test.txt', ','); %replace test.txt with the name of the file to analyze; reads in text file data
 B = zeros(size(A,1),14); %create a matrix (of zeros) with the same dimensions as A
 B(1,:) = A(1,:); %assign the matrix B to be a copy of matrix A
 
-counter = 2; %start at the 
-for i = 2:size(A,1)
-    if A(i,1) ~= A(i-1,1)
-        B(counter,:) = A(i,:);
-        counter = counter + 1;
-    end
-end
-
-sized = size(B,1);
-
-B = B(1:(counter - 1),:);
+%The following commented block removes any duplicate sensor readings that
+%may appear in a text file. Not needed for now.
+%counter = 2; %prevents code from erroring out when trying to subtract the first line from itself
+%for i = 2:size(A,1)
+    %if A(i,1) ~= A(i-1,1)
+        %B(counter,:) = A(i,:);
+        %counter = counter + 1;
+    %end
+%end
+%B = B(1:(counter - 1),:);
 
 B(:,3) = B(:,3) - 9.806; %Correct for acceleration due to gravity in the y-direction
 
@@ -33,8 +32,8 @@ C = B;
 Accelerometer = C(:,1:3);
 Gyroscope = C(:,4:6);
 Magnetometer = C(:,7:9);
-FRS = C(:,10:11);
-HES = C(:,12);
+FSR = C(:,10:11); %force-sensitive resistor
+HES = C(:,12); %hall effect sensor
 time = C(:,13);
 button = C(:,14);
 
@@ -51,17 +50,18 @@ calibrate_ay = C(1,2);
 calibrate_az = C(1,3);
 
 C(1,1) = x_i; C(1,2) = y_i; C(1,3) = z_i;
-x_pos = [0];
+
+x_pos = [0]; %vectors to hold the calculated position on a given axis at each collected time point
 y_pos = [0];
 z_pos = [0];
 
 for index1 = 1:size(C,1)
         if (index1 == 1)
-            dt = C(index1,13);
+            dt = A(index1 + 1,13) - A(index1,13); %prevents an error when no prior time value is present
         else
-            dt = C(index1,13) - C(index1 - 1,13);
+            dt = A(index1,13) - A(index1 - 1,13);
         end
-
+        C(index1,13) = dt;
         a_x = C(index1, 1) - calibrate_ax;
         v_fx = v_ix + a_x*dt; %kinematic formula for updated velocity
         x_f = x_i + v_fx*dt + 0.5*a_x*(dt^2); %kinematic formula for updated position
@@ -96,4 +96,4 @@ zlabel('z-axis')
 
 %make the text file matrix and its component data variables/columns
 %accessible by the script "MadgwickScript.m"
-save 20-lateral.mat Accelerometer Gyroscope Magnetometer FSR HES time button
+save test.mat Accelerometer Gyroscope Magnetometer FSR HES time button %change test to the desired file name for analysis
