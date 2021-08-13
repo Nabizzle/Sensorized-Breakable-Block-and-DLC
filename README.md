@@ -146,8 +146,21 @@ Upon reaching the above website, select the option “Get Software” at the top
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/InstallWindow.png">
 
-#### Uploading to the Featherboard
-Open the Arduino IDE and subsequently the Arduino script `Final_IMU_Readout`. Arrange the Featherboard such that a wire connects the B0 and 3.3V pins; this configuration is known as the **bootloader mode**, and it is employed every time one needs to upload a script to the board.
+Then, select “Get Latest” in the row that corresponds to the type of computer being used.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/STM32Download.png">
+
+After accepting the terms and conditions, you will need to create an ST.com account to acquire the download package. The software will be stored as a .zip file on your computer, so once the download has completed, access the file, right click on it, and select “Extract All”. Once the extraction has completed, open the folder and then open the file, called “SetupSTM32CubeProgrammer...” within it. The setup wizard will then initiate.
+
+Select the “Next” button in the bottom right corner of the setup wizard, and continue to select the standard installation options on the proceeding pages that will bring the wizard to completion.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/DownloadStart.png">
+
+Finally, at the appearance of the screen reading “Step 8 of 8”, select “Done.” Installation of STM32CubeProgrammer is now complete.
+
+#### Entering Bootloader Mode on the Featherboard
+
+Arrange the Featherboard on a breadboard such that a wire connects the B0 and 3.3V pins; this configuration is known as the “bootloader mode,” and it is employed every time one needs to upload a script to the board.
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Bootloader.png" width="300">
 
@@ -157,11 +170,23 @@ After obtaining a USB-C to USB cable, plug the USB-C end into the USB-C port on 
 
 Wait for the featherboard to be detected by your computer. Access the **Device Manager** module of the Control Panel on your computer and check if the **STM32 Bootloader** has appeared. If so, continue on to the next step.
 
-Then, click the **Upload** button (containing an arrow icon) in the top left corner of the IDE, and wait for the progress bar in the bottom right corner to completely fill. The upload is now complete.
+Open the STM32CubeProgrammer application. Ensure that the blue dropdown menu in the top right corner of the application is selected as “USB.”
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/STM32USB.png">
+
+Press the refresh icon located just below this blue dropdown menu, and wait for a connection with the featherboard to be established as denoted by a change in value of the “Port” category from “No DFU detected.”
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/STM32Port.png">
+
+#### Uploading Code to the Featherboard
+
+Open the Arduino IDE. In the top left corner of the application, select File > Open and select the downloaded Arduino file, titled “Final_IMU_3”, from your computer.
+
+Ensure the featherboard is still in bootloader mode and is connected to the computer, and click the “Upload” button (containing an arrow icon) in the top left corner of the IDE. Wait for the progress bar in the bottom right corner to completely fill.
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Arduino%20IDE.png" width="600">
 
-Disconnect the wire from the **B0** and **3.3V** pins, and disconnect the USB-C to USB cable from the computer and featherboard. The featherboard is now ready to be attached to the sensor circuit.
+The log at the bottom of the IDE should indicate that the download was successfully completed. You may now disconnect the board from bootloader mode by removing the wire connecting B0 and 3.3V. Unplug the USB-C connector between your computer and the featherboard. The featherboard is now ready to be attached to the sensor circuit.
 
 ### Installing DLC on Windows
 The official instructions are located [here](https://github.com/DeepLabCut/DeepLabCut/blob/master/docs/installation.md)
