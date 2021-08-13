@@ -104,9 +104,13 @@ Visit the Arduino [website](https://www.arduino.cc/en/software) to download the 
 Navigate to **File** > **Preferences** in the top dropdown menus, and to the right of Additional Boards Manager URLs, copy and paste:
 `https://github.com/stm32duino/BoardManagerFiles/raw/master/package_stmicroelectronics_index.json`
 
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/BoardManager.png">
+
 Then, press “Ok”.
 
 Now, navigate the top dropdown menu to **Tools** > **Board** > **Board Manager…**
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Library1.png">
 
 In the search bar of the Boards Manager, type in `STM32 MCU based boards`. A module with this title should be found. Hover the cursor over the bottom right corner of this option, and click the **Install** button when it appears. Once the installation is complete, press **Close**.
 
@@ -115,6 +119,8 @@ Navigate to and select **Tools** > **Board** > **STM32 boards groups** > **Gener
 Navigate to and select **Tools** > **Board part number** > **Adafruit Feather STM32F405**.
 
 Navigate to and select **Tools** > **USB support** (if available) > **CDC** (generic ‘Serial’ supersede U(S)ART).
+
+Navigate to and select **Tools** > **Upload Method** > **STM32CubeProgrammer (DFU)**.
 
 #### Library Setup on Arduino IDE
 In order to compile the Arduino code (where to obtain this code is described later), certain example libraries must be downloaded to the Arduino IDE.
@@ -125,13 +131,20 @@ _If, during installation, a pop-up window appears alerting you of existing depen
 
 Perform the previous step, this time entering `STM32duino LSM6DS3` into the library manager and installing this module.
 
+Perform the previous step, this time entering `STM32duino LIS3MDL`.
+
 Perform the previous step, this time entering `STM32duino STM32SD`.
 
 Perform the previous step, this time entering `Adafruit LIS3MDL`.
 
-Perform the previous step, this time entering `Adafruit LSM6DS3`.
- 
-#### Obtaining Scripts from GitHub
+Perform the previous step, this time entering `Adafruit LSM6DS`.
+
+#### Installation of STM32CubeProgrammer
+Visit the webpage: https://www.st.com/en/development-tools/stm32cubeprog.html.
+
+Upon reaching the above website, select the option “Get Software” at the top of the page, under the heading “STM32CubeProgrammer software for all STM32”.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/InstallWindow.png">
 
 #### Uploading to the Featherboard
 Open the Arduino IDE and subsequently the Arduino script `Final_IMU_Readout`. Arrange the Featherboard such that a wire connects the B0 and 3.3V pins; this configuration is known as the **bootloader mode**, and it is employed every time one needs to upload a script to the board.
