@@ -27,7 +27,7 @@ clc;                                % clear the command terminal
 
 %% Import and plot sensor data
 
-load 20-lateral.mat %replace 20-lateral with the name of the file to analyze 
+load test.mat %replace test with the name of the file to analyze 
 
 figure('Name', 'Sensor Data');
 axis(1) = subplot(3,1,1);
