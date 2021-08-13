@@ -1,11 +1,11 @@
-%%Hard-iron offset: -56.50, 10.24, -1.380
-%%Gyroscope zero offset: -0.1296, 0.1720, -0.02773
+%%Hard-iron offset: X = -56.50, Y = 10.24, Z = -1.380
+%%Gyroscope zero offset: X = -0.1296, Y = 0.1720, Z = -0.02773
 
-A = dlmread('20-lateral', ',');
-B = zeros(size(A,1),14);
-B(1,:) = A(1,:);
+A = dlmread('20-lateral', ','); %replace 20-lateral with the name of the file to analyze; reads in text file data
+B = zeros(size(A,1),14); %create a matrix (of zeros) with the same dimensions as A
+B(1,:) = A(1,:); %assign the matrix B to be a copy of matrix A
 
-counter = 2;
+counter = 2; %start at the 
 for i = 2:size(A,1)
     if A(i,1) ~= A(i-1,1)
         B(counter,:) = A(i,:);
@@ -17,19 +17,19 @@ sized = size(B,1);
 
 B = B(1:(counter - 1),:);
 
-B(:,2) = B(:,2) + 0.122;
-B(:,3) = B(:,3) - 9.81;
+B(:,3) = B(:,3) - 9.806; %Correct for acceleration due to gravity in the y-direction
 
-B(:,4) = B(:,4) + 0.1296;
+B(:,4) = B(:,4) + 0.1296; %Correct for corresponding gyroscope zero offsets
 B(:,5) = B(:,5) - 0.1720;
 B(:,6) = B(:,6) + 0.02773;
 
-B(:,7) = B(:,7) + 56.50;
+B(:,7) = B(:,7) + 56.50; %Correct for corresponding magnetometer hard-iron offsets
 B(:,8) = B(:,8) - 10.24;
 B(:,9) = B(:,9) + 1.380;
 
 C = B;
 
+%The following seven variables will be used by another script titled "MadgwickScript"
 Accelerometer = C(:,1:3);
 Gyroscope = C(:,4:6);
 Magnetometer = C(:,7:9);
@@ -46,7 +46,7 @@ x_i = 0; %initial position for given coordinate axis
 y_i = 0; 
 z_i = 0; 
 
-calibrate_ax = C(1,1);
+calibrate_ax = C(1,1); %Used to correct all data points with a starting acceleration of zero on a given axis
 calibrate_ay = C(1,2);
 calibrate_az = C(1,3);
 
@@ -89,9 +89,11 @@ for index1 = 1:size(C,1)
         z_pos = [z_pos, z_f];
 end
 
-plot3(x_pos, y_pos, z_pos)
+plot3(x_pos, y_pos, z_pos) %generate an x,y,z plot of the IMU's positional data
 xlabel('x-axis')
 ylabel('y-axis')
 zlabel('z-axis')
 
+%make the text file matrix and its component data variables/columns
+%accessible by the script "MadgwickScript.m"
 save 20-lateral.mat Accelerometer Gyroscope Magnetometer FSR HES time button
