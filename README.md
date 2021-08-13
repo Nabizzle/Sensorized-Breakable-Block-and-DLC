@@ -197,7 +197,7 @@ Press the refresh icon located just below this blue dropdown menu, and wait for 
 
 #### Uploading Code to the Featherboard
 
-Open the Arduino IDE. In the top left corner of the application, select File > Open and select the downloaded Arduino file, titled “Final_IMU_3”, from your computer.
+Open the Arduino IDE. In the top left corner of the application, select File > Open and select the downloaded Arduino file, titled “debug_Final_IMU.ino”, from your computer.
 
 Ensure the featherboard is still in bootloader mode and is connected to the computer, and click the “Upload” button (containing an arrow icon) in the top left corner of the IDE. Wait for the progress bar in the bottom right corner to completely fill.
 
