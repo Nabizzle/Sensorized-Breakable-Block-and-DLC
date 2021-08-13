@@ -234,12 +234,24 @@ The circuit of the block will look like what is below when laid out
 
 <img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Fritzing%20Circuit.png" width="600">
 
-<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/Circuit%20Diagram.png" width="600">
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/SensorSchematic.png" width="600">
 
 ### Soldering Instructions
-When all of the components have been placed into the box, it is necessary to maintain the capacity to enter bootloader mode to upload new code to the Featherboard. To do so, solder one side of a wire to the **3.3V** pinout on the Featherboard, with the other side of the wire having a female connector. Similarly, solder one side of another wire to the **GND** pinout on the Featherboard, with the other side of the wire being a female connector. 
+Begin by arranging the two sets of male headers on a breadboard (long side of the pin in the board) in such a manner as to allow the printed circuit board pinouts to slide on top of the headers. Carefully examine the following two pictures before beginning to solder the pins to the board. (Ignore the JST connectors and resistors attached to the top side of the PCB; attachment of these components will be addressed in subsequent steps.)
 
-Now, acquire four short wires of equal length (one for the hall effect sensor, two for the force sensitive resistors, one for the switch). Solder three of these wires to the fourth, in order to create a bundle of wires that “branches” from a main wire stem and that acts as an intermediate connector between the sensors and the female connector attached to the **3.3V** pinout on the Featherboard. Similarly, repeat the procedure with five short wires to create a bundle that branches from a main wire stem and that acts as an intermediate connector between the sensors and the **GND** pinout on the Featherboard.
+The side of the PCB with only 12 pinouts will look as shown below, with all 12 pinouts matching to a male header.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/PCBSide1.png" width="600">
+
+The side of the PCB with 16 pinouts will look as shown below, with only 9 pinouts matching to a male header. By employing a pair of needle-nosed pliers, one can slide the metal pins out of the black plastic array holding the male headers together. Remove only those pins that have been removed below. By removing these pins, the user will permit access to the 3-pin JST connector added later and shown below.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/PCBSide2.png" width="600">
+
+Once the unnecessary pins have been removed and the PCB is situated atop all the male headers shown, one may solder the headers to the PCB.
+
+Now, remove the PCB from the breadboard and attach it to the 12- and 16-pin female header sets, and fit the featherboard atop these female headers as shown. (Consider, once again, that the JST connectors and resistors have yet to be attached to the PCB, despite being shown here.) Ensure that the microSD card and IMU have been removed from the featherboard. One may now begin soldering all the female headers to the featherboard.
+
+<img src = "https://github.com/CaseFNI/Sensorized-Breakable-Block-and-DLC/blob/main/Docs/Images/PCBWithFeather.png" width="600">
 
 ### Charging the Block
 Make sure the lipo battery is charged before beginning the test. At full charge, the battery will produce **4.2V**, and after use the voltage will reduce to **3.7V**. Check the battery with a multimeter, and if the voltage reads 3.7V charge the battery for 2 hours by plugging it into the featherboard while the featherboard is connected to a computer via its USB C port. If the voltage is below 3.7, charge for 4 hours or until voltage returns to 4.2V. Do not leave the battery connected to the board when the board is not in use.
@@ -604,5 +616,3 @@ EMG is used both for the force controller but is also saved to track when the su
 # Acknowledgments
 * [Dustin Tyler Lab](http://engineering.case.edu/ebme/tyler)
 * [Mathis Lab](https://www.mackenziemathislab.org/deeplabcut)
-
-# Description of Scripts
