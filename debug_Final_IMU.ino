@@ -56,6 +56,7 @@ unsigned long ms_since_start; //variable for holding the number of milliseconds 
 
 void setup()
 {
+  //Serial.begin(115200);
   int counter = 0; //holds number of completed iterations
   
   pinMode(hall_Sensor,INPUT); //initialize the hall sensor pin as an input
@@ -167,27 +168,24 @@ if (! lis3mdl.begin_I2C()) {          // hardware I2C mode, can pass in address 
   // open the file. note that only one file can be open at a time,
   // so you have to close this one before opening another.
   int fileCounter = 0;
-  const char *baseName = "test";
-  char fileNum[4];
+  //String fileName = "test0.txt";
+  const char *fileName_conv;
+  String fileName = "test"+String(fileCounter)+".txt";
+  fileName_conv = fileName.c_str();
   
-  myFile = SD.open("test.txt", FILE_WRITE); //write to the .txt file with the name "test"
-  myFile.seek(EOF); //go directly to the end of the code in a text file if the file is not blank
+  while (SD.exists(fileName_conv)) {
+    fileCounter += 1;
+    fileName = "test"+String(fileCounter)+".txt";
+    fileName_conv = fileName.c_str();
+  }
 
-  // if the file opened okay, write to it:
-//  while (myFile == NULL) {
-//    char fileName[12];
-//    fileCounter += 1;
-//    strcat(fileName,baseName);
-//    dtostrf(fileCounter,1,2,fileNum);
-//    strcat(fileName,fileNum);
-//    strcat(fileName,".txt");
-//    myFile = SD.open(fileName, FILE_WRITE);
-//  }
+  delay(5000);
+  
+  myFile = SD.open(fileName_conv, FILE_WRITE); //write to the .txt file with the name "test"
+
   myFile.println("Writing a new dataset ..."); //indicates in the written text of the file that a new trial of data collection has begun
 
- 
-
-  while (counter < 20000) { //The user can change the number of data points that are collected during a trial by changing the number x, where counter < x, in the while loop's conditional statement
+  while (counter < 2000) { //The user can change the number of data points that are collected during a trial by changing the number x, where counter < x, in the while loop's conditional statement
 
 //The following four lines reset the IMU's accelerometer and gyroscope in order to permit their collection of a new data point
   sensors_event_t accel;
@@ -221,7 +219,9 @@ if (! lis3mdl.begin_I2C()) {          // hardware I2C mode, can pass in address 
   // Print the fsrreadings on the text file of the SD car:
   myFile.print(","); char tmp10[10]; dtostrf(fsrreading1, 1,2, tmp10); myFile.print(tmp10);
   myFile.print(","); char tmp11[10]; dtostrf(fsrreading2, 1,2, tmp11); myFile.print(tmp11);
-
+  //Serial.print(tmp10);
+  //Serial.print(",");
+  //Serial.println(tmp11);
   myFile.print(",");
 
 //Read the value of the hall sensor pin and output whether a magnet passed by ("1") or no magnet has passed by the sensor ("0")
@@ -255,12 +255,18 @@ if (! lis3mdl.begin_I2C()) {          // hardware I2C mode, can pass in address 
   counter = counter + 1; //increment the variable storing the number of iterations that have occurred
   delayMicroseconds(10);
   }
+  digitalWrite(ledPin, LOW);
   
     // close the file:
     myFile.close();
+    delay(2000);
 }
 
 void loop()
 {
-  // nothing happens after setup
+  //fancy LED sequence to indicate end of trial
+  digitalWrite(ledPin, HIGH);
+  delay(500);
+  digitalWrite(ledPin, LOW);
+  delay(500);
 }
